@@ -1,0 +1,35 @@
+{
+    "name": "formMapper",
+    "version": "1.0.0",
+    "description": "Get the values of form inputs as one collective object",
+    "keywords": [
+        "DEGJS"
+    ],
+    "author": {
+        "name": "Anna Scheuler",
+        "email": "ascheuler@degdigital.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DEGJS/formMapper.git"
+    },
+    "bugs": "https://github.com/DEGJS/formMapper/issues",
+    "jspm": {
+        "registry": "jspm",
+        "format": "es6",
+        "main": "formMapper.js",
+        "directories": {
+            "lib": "src"
+        }
+    },
+    "scripts": {
+        "test": "jest",
+        "lint": "exlint ./src"
+    },
+    "devDependencies": {
+        "babel-env": "^2.4.1",
+        "eslint": "^4.17.0",
+        "jest": "^22.2.1"
+    }
+}
