@@ -25,7 +25,7 @@
     },
     "scripts": {
         "test": "jest",
-        "lint": "exlint ./src"
+        "lint": "eslint ./src"
     },
     "devDependencies": {
         "babel-env": "^2.4.1",

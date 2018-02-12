@@ -11,7 +11,7 @@ describe('handling input', () => {
         `;
         const formEl = document.querySelector('form');
         const retVal = formMapper.getValues(formEl);
-        expect(retVal).toEqual( {} );
+        expect(retVal).toEqual({});
     });
 
     it('should handle items that are not form elements', () => {
@@ -20,7 +20,9 @@ describe('handling input', () => {
         let retVal = formMapper.getValues(emptyObj);
         expect(retVal).toEqual(emptyObj);
 
-        retVal = formMapper.getValues({ test: 'test'});
+        retVal = formMapper.getValues({
+            test: 'test'
+        });
         expect(retVal).toEqual(emptyObj);
 
         retVal = formMapper.getValues(null);
@@ -43,7 +45,7 @@ describe('handling input', () => {
 
 describe('getting elements of form', () => {
     it('should return list of elements', () => {
-        const elList = [ 
+        const elList = [
             document.createElement('input'),
             document.createElement('textarea')
         ];
@@ -59,7 +61,7 @@ describe('getting elements of form', () => {
     });
 
     it('should return list of elements -- if only one', () => {
-        const elList = [ document.createElement('input') ];
+        const elList = [document.createElement('input')];
         document.body.innerHTML = `
             <form>
                 <input />
@@ -104,7 +106,9 @@ describe('map values', () => {
         let retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
 
-        comparisonVal = { input1: 'two' };
+        comparisonVal = {
+            input1: 'two'
+        };
         document.body.innerHTML = `
             <form>
                 <input name="input1" value="two" />
@@ -116,7 +120,7 @@ describe('map values', () => {
     });
 
     it('should handle text areas', () => {
-        const comparisonVal = { textarea: "The quick brown fox" };
+        const comparisonVal = {textarea: 'The quick brown fox'};
         document.body.innerHTML = `
             <form>
                 <textarea name="textarea">The quick brown fox</textarea>
@@ -128,7 +132,9 @@ describe('map values', () => {
     });
 
     it('should map single selects', () => {
-        const comparisonVal = { input1: "I am chosen" };
+        const comparisonVal = {
+            input1: 'I am chosen'
+        };
         document.body.innerHTML = `
             <form>
                 <select name="input1">
@@ -142,7 +148,9 @@ describe('map values', () => {
     });
 
     it('should handle multi selects', () => {
-        const comparisonVal = { input1: ['one', 'two'] };
+        const comparisonVal = {
+            input1: ['one', 'two']
+        };
         document.body.innerHTML = `
             <form>
                 <select name="input1" multiple>
@@ -157,7 +165,9 @@ describe('map values', () => {
     });
 
     it('should handle checkbox groups', () => {
-        let comparisonVal = { input1: ['one', 'two'] };
+        let comparisonVal = {
+            input1: ['one', 'two']
+        };
         document.body.innerHTML = `
             <form>
                 <input type="checkbox" name="input1" value="one" checked />
@@ -168,7 +178,9 @@ describe('map values', () => {
         let retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
 
-        comparisonVal = { input1: ['two'] };
+        comparisonVal = {
+            input1: ['two']
+        };
         document.body.innerHTML = `
             <form>
                 <input type="checkbox" name="input1" value="one" />
@@ -185,14 +197,16 @@ describe('map values', () => {
                 <input type="checkbox" name="input1" value="one" />
                 <input type="checkbox" name="input1" value="two" />
             </form>
-        `; 
+        `;
         formEl = document.querySelector('form');
         retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
     });
 
     it('should handle radio buttons', () => {
-        let comparisonVal = { input1: 'one' };
+        let comparisonVal = {
+            input1: 'one'
+        };
         document.body.innerHTML = `
             <form>
                 <input type="radio" name="input1" value="one" checked />
@@ -203,7 +217,9 @@ describe('map values', () => {
         let retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
 
-        comparisonVal = { input1: 'two' };
+        comparisonVal = {
+            input1: 'two'
+        };
         document.body.innerHTML = `
             <form>
                 <input type="radio" name="input1" value="one" />
@@ -220,14 +236,14 @@ describe('map values', () => {
                 <input type="radio" name="input1" value="one" />
                 <input type="radio" name="input1" value="two" />
             </form>
-        `; 
+        `;
         formEl = document.querySelector('form');
         retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
     });
 
     it('should handle input elements with varying types', () => {
-        let comparisonVal = { 
+        const comparisonVal = {
             input1: '1',
             input2: '2',
             input3: '3',
@@ -254,8 +270,8 @@ describe('map values', () => {
                 <input type="radio" name="input6" value="6.1" checked />
             </form>
         `;
-        let formEl = document.querySelector('form');
-        let retVal = formMapper.getValues(formEl);
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
     });
-})
+});
