@@ -29,7 +29,63 @@ import formMapper from "DEGJS/formMapper";
 const formData = formMapper.getValues(formEl);
 ```
 
+## Options
+The options represent the default selector names for various input elements. Can be replaced with any selectors that `querySelectAll` and `matches` supports.
+
+#### options.input
+Type: `String`
+Default: `input`
+The default selector for input elements
+
+#### options.checkbox
+Type: `String`
+Default: `input[type="checkbox"]`
+The default selector for checkbox elements
+
+#### options.radio
+Type: `String`
+Default: `input[type="radio"]`
+The default selector for radio elements
+
+#### options.select
+Type: `String`
+Default: `select`
+The default selector for select elements
+
+#### options.multiSelect
+Type: `String`
+Default: `select[multiple]`
+The default selector for multi-select elements
+
+#### options.textArea
+Type: `String`
+Default: `textarea`
+The default selector for textarea elements
+
 ## Methods
+
+### getValues(formElement, opts)
+The getValues method returns an object with key value pairs being { inputName: inputValue }
+
+#### formElement
+Type: `Element`
+The form element to extract values from.
+
+#### opts
+Type: `Object`
+And object to override any default element selectors.
+
+### getInputElements(formElement, opts)
+The getInputElements method returns an array of input elements as found by the default selectors.
+
+#### formEl
+Type: `Element`
+The form element to extract inputs from.
+
+#### selectorSettings
+Type: `Object`
+Default: `defaultElementSelectors`
+And object to specify element selectors.
 
 ## Browser Support
 formMapper depends on the following browser APIs:
