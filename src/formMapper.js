@@ -1,4 +1,3 @@
-const formElSelector = 'form';
 const multiSelectSelector = 'select[multiple]';
 const radioSelector = 'input[type="radio"]';
 const checkboxSelector = 'input[type="checkbox"]';
@@ -44,7 +43,7 @@ function mapValues(elementList) {
 function getValues(input, elementSelectors = defaultElementSelectors) {
     if (input) {
         if (input.tagName) {
-            const elementList = input.tagName.toLowerCase() === formElSelector ? getInputElements(input, elementSelectors) : [input];
+            const elementList = input.matches(defaultElementSelectors) ? [input] : getInputElements(input, elementSelectors);
             if (elementList.length) {
                 return mapValues(elementList);
             }
