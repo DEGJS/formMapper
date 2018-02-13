@@ -275,3 +275,29 @@ describe('map values', () => {
         expect(retVal).toEqual(comparisonVal);
     });
 });
+
+describe('overriding defaults', () => {
+    it('should handle empty selector value', () => {
+        document.body.innerHTML = `
+            <form></form>
+        `;
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl, '');
+        expect(retVal).toEqual({});
+    });
+
+    it('should handle a passed selector string', () => {
+        const comparisonVal = {
+            input1: '1'
+        };
+        document.body.innerHTML = `
+            <form>
+                <input name="input1" class="js-input" value="1" />
+                <input name="input2" value="2" />
+            </form>
+        `;
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl, '.js-input');
+        expect(retVal).toEqual(comparisonVal);
+    });
+});

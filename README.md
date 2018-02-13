@@ -29,51 +29,25 @@ import formMapper from "DEGJS/formMapper";
 const formData = formMapper.getValues(formEl);
 ```
 
-## Options
-The options represent the default selector names for various input elements. Can be replaced with any selectors that `querySelectAll` and `matches` supports.
+## DefaultElementSelectors
+The options represent the default selector names for various input elements. Can be replaced with a string of any selectors that `querySelectAll` and `matches` supports.
 
-#### options.input
-Type: `String`
-Default: `input`
-The default selector for input elements
-
-#### options.checkbox
-Type: `String`
-Default: `input[type="checkbox"]`
-The default selector for checkbox elements
-
-#### options.radio
-Type: `String`
-Default: `input[type="radio"]`
-The default selector for radio elements
-
-#### options.select
-Type: `String`
-Default: `select`
-The default selector for select elements
-
-#### options.multiSelect
-Type: `String`
-Default: `select[multiple]`
-The default selector for multi-select elements
-
-#### options.textArea
-Type: `String`
-Default: `textarea`
-The default selector for textarea elements
+Default: `input, select, textarea`
+Example override: `.js-input, .js-checkbox-input, select[multiple], textarea`
 
 ## Methods
 
-### getValues(formElement, opts)
+### getValues(formElement, elementSelectors)
 The getValues method returns an object with key value pairs being { inputName: inputValue }
 
 #### formElement
 Type: `Element`
 The form element to extract values from.
 
-#### opts
-Type: `Object`
-And object to override any default element selectors.
+#### elementSelectors
+Type: `String`
+Default: `defaultElementSelectors`
+And string representing a comma-separated list of selectors to override any default element selectors.
 
 ### getInputElements(formEl, selectorSettings)
 The getInputElements method returns an array of input elements as found by the default selectors.
@@ -83,9 +57,9 @@ Type: `Element`
 The form element to extract inputs from.
 
 #### selectorSettings
-Type: `Object`
+Type: `String`
 Default: `defaultElementSelectors`
-And object to specify element selectors.
+And string representing a comma-separated list of selectors to override any default element selectors.
 
 ## Browser Support
 formMapper depends on the following browser APIs:

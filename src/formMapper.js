@@ -1,39 +1,30 @@
 const formElSelector = 'form';
-const defaultElementSelectors = {
-    input: 'input',
-    checkbox: 'input[type="checkbox"]',
-    radio: 'input[type="radio"]',
-    select: 'select',
-    multiSelect: 'select[multiple]',
-    textArea: 'textarea'
-};
+const multiSelectSelector = 'select[multiple]';
+const radioSelector = 'input[type="radio"]';
+const checkboxSelector = 'input[type="checkbox"]';
+const defaultElementSelectors = 'input, select, textarea';
 
 function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
-    const listOfSelectors = Object.keys(selectorSettings)
-                                .map(k => selectorSettings[k])
-                                .join(', ');
-    return [...formEl.querySelectorAll(listOfSelectors)];
+    return [...formEl.querySelectorAll(selectorSettings)];
 }
 
-function mapValues(elementList, selectorSettings) {
+function mapValues(elementList) {
     const returnVal = {};
     for (const el of elementList) {
         if (!el.name) {
             continue;
         }
 
-        if (el.matches(selectorSettings.checkbox)) {
+        if (el.matches(checkboxSelector)) {
             if (el.checked) {
-                if (!returnVal[el.name]) {
-                    returnVal[el.name] = [];
-                }
-                returnVal[el.name].push(el.value);
+                const currentVal = returnVal[el.name] || [];
+                returnVal[el.name] = [...currentVal, el.value];
             }
-        } else if (el.matches(selectorSettings.radio)) {
+        } else if (el.matches(radioSelector)) {
             if (el.checked) {
                 returnVal[el.name] = el.value;
             }
-        } else if (el.matches(selectorSettings.multiSelect)) {
+        } else if (el.matches(multiSelectSelector)) {
             returnVal[el.name] = [...el.options]
                                     .filter(optEl => optEl.selected)
                                     .map(opt => opt.value);
@@ -47,16 +38,15 @@ function mapValues(elementList, selectorSettings) {
 /**
  *
  * @param {Element} formEl a form element
- * @param {Object} opts overrides for defaultElementSelectors -- if selectors should be class based, etc
+ * @param {String} elementSelectors overrides for defaultElementSelectors -- if selectors should be class based, etc
  * @returns {Object} with the key value pairs being { inputName: inputValue }
  */
-function getValues(formEl, opts = {}) {
+function getValues(formEl, elementSelectors = defaultElementSelectors) {
     if (formEl && formEl.tagName) {
         if (formEl.tagName.toLowerCase() === formElSelector) {
-            const selectorSettings = {...defaultElementSelectors, ...opts};
-            const elementList = getInputElements(formEl, selectorSettings);
+            const elementList = getInputElements(formEl, elementSelectors);
             if (elementList.length) {
-                return mapValues(elementList, selectorSettings);
+                return mapValues(elementList);
             }
         }
     }
