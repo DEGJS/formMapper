@@ -56,8 +56,7 @@ function getValues(formEl, opts = {}) {
             const selectorSettings = {...defaultElementSelectors, ...opts};
             const elementList = getInputElements(formEl, selectorSettings);
             if (elementList.length) {
-                const values = mapValues(elementList, selectorSettings);
-                return values;
+                return mapValues(elementList, selectorSettings);
             }
         }
     }
