@@ -36,7 +36,7 @@ function mapValues(elementList) {
 
 /**
  *
- * @param {Element | Element[]} input a form element or an array of Elements
+ * @param {Element | Element[]} input an input element, container element or an array of elements
  * @param {String} elementSelectors overrides for defaultElementSelectors -- if selectors should be class based, etc
  * @returns {Object} with the key value pairs being { inputName: inputValue }
  */
