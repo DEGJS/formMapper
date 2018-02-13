@@ -1,5 +1,5 @@
 # formMapper
-A utility to take in a form element and return an object consisting of form values
+A utility to take in an element or array of elements and return an object consisting of their values
 
 ## Install
 formMapper is an ES6 module. Consequently, you'll nee an ES6 transpiler ([Babel](https://babeljs.io) is an option) and a module loader as part of your Javascript workflow.
@@ -37,12 +37,12 @@ Example override: `.js-input, .js-checkbox-input, select[multiple], textarea`
 
 ## Methods
 
-### getValues(formElement, elementSelectors)
+### getValues(input, elementSelectors)
 The getValues method returns an object with key value pairs being { inputName: inputValue }
 
-#### formElement
-Type: `Element`
-The form element to extract values from.
+#### input
+Type: `Element | Element[]`
+The form element, input element or list of elements to get values from.
 
 #### elementSelectors
 Type: `String`

@@ -37,17 +37,19 @@ function mapValues(elementList) {
 
 /**
  *
- * @param {Element} formEl a form element
+ * @param {Element | Element[]} input a form element or an array of Elements
  * @param {String} elementSelectors overrides for defaultElementSelectors -- if selectors should be class based, etc
  * @returns {Object} with the key value pairs being { inputName: inputValue }
  */
-function getValues(formEl, elementSelectors = defaultElementSelectors) {
-    if (formEl && formEl.tagName) {
-        if (formEl.tagName.toLowerCase() === formElSelector) {
-            const elementList = getInputElements(formEl, elementSelectors);
+function getValues(input, elementSelectors = defaultElementSelectors) {
+    if (input) {
+        if (input.tagName) {
+            const elementList = input.tagName.toLowerCase() === formElSelector ? getInputElements(input, elementSelectors) : [input];
             if (elementList.length) {
                 return mapValues(elementList);
             }
+        } else if (input.length) {
+            return mapValues(input);
         }
     }
 

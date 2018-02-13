@@ -14,6 +14,32 @@ describe('handling input', () => {
         expect(retVal).toEqual({});
     });
 
+    it('should handle an array of elements', () => {
+        const comparisonVal = {
+            input1: 'one',
+            input2: 'two'
+        };
+        document.body.innerHTML = `
+            <input name="input1" value="one" />
+            <input name="input2" value="two" />
+        `;
+        const props = [...document.querySelectorAll('input')];
+        const retVal = formMapper.getValues(props);
+        expect(retVal).toEqual(comparisonVal);
+    });
+
+    it('should handle a single element', () => {
+        const comparisonVal = {
+            input1: 'one'
+        };
+        document.body.innerHTML = `
+            <input name="input1" value="one" />
+        `;
+        const props = document.querySelector('input');
+        const retVal = formMapper.getValues(props);
+        expect(retVal).toEqual(comparisonVal);
+    });
+
     it('should handle items that are not form elements', () => {
         const emptyObj = {};
 
@@ -35,6 +61,9 @@ describe('handling input', () => {
         expect(retVal).toEqual(emptyObj);
 
         retVal = formMapper.getValues([]);
+        expect(retVal).toEqual(emptyObj);
+
+        retVal = formMapper.getValues(['test', 'test']);
         expect(retVal).toEqual(emptyObj);
 
         const el = document.createElement('div');
