@@ -75,7 +75,7 @@ The form element to extract values from.
 Type: `Object`
 And object to override any default element selectors.
 
-### getInputElements(formElement, opts)
+### getInputElements(formEl, selectorSettings)
 The getInputElements method returns an array of input elements as found by the default selectors.
 
 #### formEl
