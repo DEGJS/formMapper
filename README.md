@@ -1,5 +1,5 @@
 # formMapper
-A utility to take in a form element and return an object consisting of form values
+A utility to take in an element or array of elements and return an object consisting of their values
 
 ## Install
 formMapper is an ES6 module. Consequently, you'll nee an ES6 transpiler ([Babel](https://babeljs.io) is an option) and a module loader as part of your Javascript workflow.
@@ -29,7 +29,37 @@ import formMapper from "DEGJS/formMapper";
 const formData = formMapper.getValues(formEl);
 ```
 
+## DefaultElementSelectors
+The options represent the default selector names for various input elements. Can be replaced with a string of any selectors that `querySelectAll` and `matches` supports.
+
+Default: `input, select, textarea`
+Example override: `.js-input, .js-checkbox-input, select[multiple], textarea`
+
 ## Methods
+
+### getValues(input, elementSelectors)
+The getValues method returns an object with key value pairs being { inputName: inputValue }
+
+#### input
+Type: `Element | Element[]`
+The container element, input element or list of elements to get values from.
+
+#### elementSelectors
+Type: `String`
+Default: `defaultElementSelectors`
+And string representing a comma-separated list of selectors to override any default element selectors.
+
+### getInputElements(formEl, selectorSettings)
+The getInputElements method returns an array of input elements as found by the default selectors.
+
+#### formEl
+Type: `Element`
+The form element to extract inputs from.
+
+#### selectorSettings
+Type: `String`
+Default: `defaultElementSelectors`
+And string representing a comma-separated list of selectors to override any default element selectors.
 
 ## Browser Support
 formMapper depends on the following browser APIs:
