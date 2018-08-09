@@ -193,6 +193,17 @@ describe('map values', () => {
         expect(retVal).toEqual(comparisonVal);
     });
 
+    it('should handle file inputs', () => {
+        document.body.innerHTML = `
+            <form>
+                <input name="input1" type="file" />
+            </form>
+        `;
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl);
+        expect(retVal.input1).toBeInstanceOf(FileList);
+    });
+
     it('should handle checkbox groups', () => {
         let comparisonVal = {
             input1: ['one', 'two']

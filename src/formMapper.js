@@ -1,6 +1,7 @@
 const multiSelectSelector = 'select[multiple]';
 const radioSelector = 'input[type="radio"]';
 const checkboxSelector = 'input[type="checkbox"]';
+const fileSelector = 'input[type="file"]';
 const defaultElementSelectors = 'input, select, textarea';
 
 function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
@@ -27,6 +28,8 @@ function mapValues(elementList) {
             returnVal[el.name] = [...el.options]
                                     .filter(optEl => optEl.selected)
                                     .map(opt => opt.value);
+        } else if (el.matches(fileSelector)) {
+            returnVal[el.name] = el.files;
         } else {
             returnVal[el.name] = el.value;
         }
