@@ -201,7 +201,7 @@ describe('map values', () => {
         `;
         const formEl = document.querySelector('form');
         const retVal = formMapper.getValues(formEl);
-        expect(retVal).toBeInstanceOf(Object);
+        expect(retVal.input1).toBeInstanceOf(FileList);
     });
 
     it('should handle checkbox groups', () => {
