@@ -1,6 +1,6 @@
 {
     "name": "@degjs/form-mapper",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Get the values of form inputs as one collective object",
     "keywords": [
         "DEGJS",
@@ -16,15 +16,11 @@
         "type": "git",
         "url": "https://github.com/DEGJS/formMapper.git"
     },
+    "files": [
+        "src"
+    ],
+    "main": "src/formMapper.js",
     "bugs": "https://github.com/DEGJS/formMapper/issues",
-    "jspm": {
-        "registry": "jspm",
-        "format": "es6",
-        "main": "formMapper.js",
-        "directories": {
-            "lib": "src"
-        }
-    },
     "scripts": {
         "test": "jest",
         "lint": "eslint ./src"
@@ -35,6 +31,6 @@
         "jest": "^22.2.1"
     },
     "publishConfig": {
-		"access": "public"
-	}
+        "access": "public"
+    }
 }

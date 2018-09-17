@@ -4,18 +4,18 @@
 A utility to take in an element or array of elements and return an object consisting of their values
 
 ## Install
-formMapper is an ES6 module. Consequently, you'll nee an ES6 transpiler ([Babel](https://babeljs.io) is an option) and a module loader as part of your Javascript workflow.
+formMapper is an ES6 module. Consequently, you'll nee an ES6 transpiler ([Babel](https://babeljs.io) is an option) as part of your Javascript workflow.
 
-If you are already using the [JSPM package manager](http://jspm.io) for your project, you can install formMapper with the following command:
+If you are already using NPM for your project, you can install formMapper with the following command:
 
 ```
-$ jspm install github:DEGJS/formMapper
+$ npm install @degjs/form-mapper
 ```
 
 ## Usage 
 ### Importing individual methods:
 ```
-import { getValues } from "DEGJS/formMapper";
+import { getValues } from "@degjs/form-mapper";
 .
 .
 .
@@ -24,7 +24,7 @@ const formData = getValues(formEl);
 
 ### Importing all methods:
 ```
-import formMapper from "DEGJS/formMapper";
+import formMapper from "@degjs/form-mapper";
 .
 .
 .
