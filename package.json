@@ -32,5 +32,11 @@
     },
     "publishConfig": {
         "access": "public"
+    },
+    "jest": {
+        "testPathIgnorePatterns": [
+            "/node_modules/"
+        ],
+        "testURL": "http://localhost"
     }
 }
