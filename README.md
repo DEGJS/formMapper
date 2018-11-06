@@ -39,17 +39,17 @@ Example override: `.js-input, .js-checkbox-input, select[multiple], textarea`
 
 ## Methods
 
-### getValues(input, elementSelectors)
+### getValues(input, opts)
 The getValues method returns an object with key value pairs being { inputName: inputValue }
 
 #### input
 Type: `Element | Element[]`
 The container element, input element or list of elements to get values from.
 
-#### elementSelectors
-Type: `String`
-Default: `defaultElementSelectors`
-And string representing a comma-separated list of selectors to override any default element selectors.
+#### opts
+Type: `Object`
+Default: `{elementSelectors: defaultElementSelectors, shouldStringify: false}`
+An object to override the default settings. `shouldStringify` declares if the returned value should be a string representation of an object or just the object.
 
 ### getInputElements(formEl, selectorSettings)
 The getInputElements method returns an array of input elements as found by the default selectors.
