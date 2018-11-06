@@ -124,18 +124,20 @@ describe('getting elements of form', () => {
 });
 
 describe('map values', () => {
-    it('should only map inputs with name attr', () => {
-        let comparisonVal = { };
+    it('should not map input without a name attr', () => {
+        const comparisonVal = {};
         document.body.innerHTML = `
             <form>
                 <input value="one" />
             </form>
         `;
-        let formEl = document.querySelector('form');
-        let retVal = formMapper.getValues(formEl);
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
+    });
 
-        comparisonVal = {
+    it('should only map inputs with name attr', () => {
+        const comparisonVal = {
             input1: 'two'
         };
         document.body.innerHTML = `
@@ -143,8 +145,8 @@ describe('map values', () => {
                 <input name="input1" value="two" />
             </form>
         `;
-        formEl = document.querySelector('form');
-        retVal = formMapper.getValues(formEl);
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl);
         expect(retVal).toEqual(comparisonVal);
     });
 
@@ -322,7 +324,9 @@ describe('overriding defaults', () => {
             <form></form>
         `;
         const formEl = document.querySelector('form');
-        const retVal = formMapper.getValues(formEl, '');
+        const retVal = formMapper.getValues(formEl, {
+            elementSelectors: ''
+        });
         expect(retVal).toEqual({});
     });
 
@@ -337,7 +341,53 @@ describe('overriding defaults', () => {
             </form>
         `;
         const formEl = document.querySelector('form');
-        const retVal = formMapper.getValues(formEl, '.js-input');
+        const retVal = formMapper.getValues(formEl, {
+            elementSelectors: '.js-input'
+        });
+        expect(retVal).toEqual(comparisonVal);
+    });
+});
+
+describe('stringify', () => {
+    it('should not stringify by default', () => {
+        const comparisonVal = {
+            input1: 'two'
+        };
+        document.body.innerHTML = `
+            <form>
+                <input name="input1" value="two" />
+            </form>
+        `;
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl);
+        expect(retVal).toEqual(comparisonVal);
+    });
+
+    it('should stringify empty object', () => {
+        const comparisonVal = '{}';
+        document.body.innerHTML = `
+            <form>
+                <input value="two" />
+            </form>
+        `;
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl, {
+            shouldStringify: true
+        });
+        expect(retVal).toEqual(comparisonVal);
+    });
+
+    it('should stringify an object', () => {
+        const comparisonVal = '{"input1":"two"}';
+        document.body.innerHTML = `
+            <form>
+                <input name="input1" value="two" />
+            </form>
+        `;
+        const formEl = document.querySelector('form');
+        const retVal = formMapper.getValues(formEl, {
+            shouldStringify: true
+        });
         expect(retVal).toEqual(comparisonVal);
     });
 });

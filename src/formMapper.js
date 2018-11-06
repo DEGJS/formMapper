@@ -3,6 +3,10 @@ const radioSelector = 'input[type="radio"]';
 const checkboxSelector = 'input[type="checkbox"]';
 const fileSelector = 'input[type="file"]';
 const defaultElementSelectors = 'input, select, textarea';
+const defaults = {
+    elementSelectors: defaultElementSelectors,
+    shouldStringify: false
+};
 
 function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
     return [...formEl.querySelectorAll(selectorSettings)];
@@ -40,22 +44,25 @@ function mapValues(elementList) {
 /**
  *
  * @param {Element | Element[]} input an input element, container element or an array of elements
- * @param {String} elementSelectors overrides for defaultElementSelectors -- if selectors should be class based, etc
+ * @param {Object} opts overrides default settings
  * @returns {Object} with the key value pairs being { inputName: inputValue }
  */
-function getValues(input, elementSelectors = defaultElementSelectors) {
+function getValues(input, opts = {}) {
+    const settings = {...defaults, ...opts};
+    let retVal = {};
+
     if (input) {
         if (input.tagName) {
-            const elementList = input.matches(defaultElementSelectors) ? [input] : getInputElements(input, elementSelectors);
+            const elementList = input.matches(defaultElementSelectors) ? [input] : getInputElements(input, settings.elementSelectors);
             if (elementList.length) {
-                return mapValues(elementList);
+                retVal = mapValues(elementList);
             }
         } else if (input.length) {
-            return mapValues(input);
+            retVal = mapValues(input);
         }
     }
 
-    return {};
+    return settings.shouldStringify ? JSON.stringify(retVal) : retVal;
 }
 
 export default {
