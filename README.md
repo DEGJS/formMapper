@@ -39,7 +39,7 @@ Example override: `.js-input, .js-checkbox-input, select[multiple], textarea`
 
 ## Methods
 
-### getValues(input, elementSelectors)
+### getValues(input, opts)
 The getValues method returns an object with key value pairs being { inputName: inputValue }
 
 #### input
