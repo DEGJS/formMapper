@@ -8,7 +8,7 @@ const defaults = {
     shouldStringify: false
 };
 
-function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
+export function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
     return [...formEl.querySelectorAll(selectorSettings)];
 }
 
@@ -47,7 +47,7 @@ function mapValues(elementList) {
  * @param {Object} opts overrides default settings
  * @returns {Object} with the key value pairs being { inputName: inputValue }
  */
-function getValues(input, opts = {}) {
+export function getValues(input, opts = {}) {
     const settings = {...defaults, ...opts};
     let retVal = {};
 
