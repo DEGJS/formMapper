@@ -1,6 +1,6 @@
 {
     "name": "@degjs/form-mapper",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Get the values of form inputs as one collective object",
     "keywords": [
         "DEGJS",
@@ -26,9 +26,10 @@
         "lint": "eslint ./src"
     },
     "devDependencies": {
-        "babel-env": "^2.4.1",
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3",
         "eslint": "^4.17.0",
-        "jest": "^22.2.1"
+        "jest": "^24.7.1"
     },
     "publishConfig": {
         "access": "public"
@@ -38,5 +39,10 @@
             "/node_modules/"
         ],
         "testURL": "http://localhost"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ]
     }
 }
