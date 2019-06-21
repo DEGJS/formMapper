@@ -70,6 +70,4 @@ formMapper depends on the following browser APIs:
 
 As of Febrary 2018, matches is supported in IE9 and up.
 
-+Array.isArray: [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray) | [Polyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray#Polyfill)
-
 To support legacy browsers, you'll need to include polyfills for the above APIs.
