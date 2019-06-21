@@ -44,7 +44,7 @@ The getValues method returns an object with key value pairs being { inputName: i
 
 #### input
 Type: `Element | Element[]`
-The container element, input element or list of elements to get values from.
+The container element, input element or array of elements to get values from.
 
 #### opts
 Type: `Object`
@@ -69,5 +69,7 @@ formMapper depends on the following browser APIs:
 + matches: [Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) | [Polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill)
 
 As of Febrary 2018, matches is supported in IE9 and up.
+
++Array.isArray: [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray) | [Polyfill](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray#Polyfill)
 
 To support legacy browsers, you'll need to include polyfills for the above APIs.

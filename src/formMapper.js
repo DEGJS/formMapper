@@ -13,10 +13,13 @@ export function getInputElements(formEl, selectorSettings = defaultElementSelect
 }
 
 function mapValues(elementList) {
-    const returnVal = {};
-    for (const el of elementList) {
+    if(!Array.isArray(elementList)) {
+        return {};
+    }
+
+    return elementList.reduce((returnVal, el) => {
         if (!el.name) {
-            continue;
+            return returnVal;
         }
 
         if (el.matches(checkboxSelector)) {
@@ -37,8 +40,8 @@ function mapValues(elementList) {
         } else {
             returnVal[el.name] = el.value;
         }
-    }
-    return returnVal;
+        return returnVal;
+    }, {});
 }
 
 /**
