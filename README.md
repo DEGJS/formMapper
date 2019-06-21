@@ -44,7 +44,7 @@ The getValues method returns an object with key value pairs being { inputName: i
 
 #### input
 Type: `Element | Element[]`
-The container element, input element or list of elements to get values from.
+The container element, input element or array of elements to get values from.
 
 #### opts
 Type: `Object`
