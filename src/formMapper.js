@@ -5,15 +5,16 @@ const fileSelector = 'input[type="file"]';
 const defaultElementSelectors = 'input, select, textarea';
 const defaults = {
     elementSelectors: defaultElementSelectors,
-    shouldStringify: false
+    shouldStringify: false,
+    shouldReturnAllCheckboxVals: false
 };
 
 export function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
     return [...formEl.querySelectorAll(selectorSettings)];
 }
 
-function mapValues(elementList) {
-    if(!Array.isArray(elementList)) {
+function mapValues(elementList, shouldReturnAllCheckboxVals) {
+    if (!Array.isArray(elementList)) {
         return {};
     }
 
@@ -23,9 +24,17 @@ function mapValues(elementList) {
         }
 
         if (el.matches(checkboxSelector)) {
-            if (el.checked) {
-                const currentVal = returnVal[el.name] || [];
-                returnVal[el.name] = [...currentVal, el.value];
+            if (shouldReturnAllCheckboxVals) {
+                const currentVal = returnVal[el.name] || {};
+                returnVal[el.name] = {
+                    ...currentVal,
+                    [el.value]: el.checked
+                };
+            } else {
+                if (el.checked) {
+                    const currentVal = returnVal[el.name] || [];
+                    returnVal[el.name] = [...currentVal, el.value];
+                }
             }
         } else if (el.matches(radioSelector)) {
             if (el.checked) {
@@ -33,8 +42,8 @@ function mapValues(elementList) {
             }
         } else if (el.matches(multiSelectSelector)) {
             returnVal[el.name] = [...el.options]
-                                    .filter(optEl => optEl.selected)
-                                    .map(opt => opt.value);
+                .filter(optEl => optEl.selected)
+                .map(opt => opt.value);
         } else if (el.matches(fileSelector)) {
             returnVal[el.name] = el.files;
         } else {
@@ -51,17 +60,18 @@ function mapValues(elementList) {
  * @returns {Object} with the key value pairs being { inputName: inputValue }
  */
 export function getValues(input, opts = {}) {
-    const settings = {...defaults, ...opts};
+    const settings = { ...defaults, ...opts };
+    const { shouldReturnAllCheckboxVals } = settings;
     let retVal = {};
 
     if (input) {
         if (input.tagName) {
             const elementList = input.matches(defaultElementSelectors) ? [input] : getInputElements(input, settings.elementSelectors);
             if (elementList.length) {
-                retVal = mapValues(elementList);
+                retVal = mapValues(elementList, shouldReturnAllCheckboxVals);
             }
         } else if (input.length) {
-            retVal = mapValues(input);
+            retVal = mapValues(input, shouldReturnAllCheckboxVals);
         }
     }
 
