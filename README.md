@@ -48,10 +48,10 @@ The container element, input element or array of elements to get values from.
 
 #### opts
 Type: `Object`   
-Default: `{elementSelectors: defaultElementSelectors, shouldStringify: false, shouldReturnAllCheckboxGroupVals: false}`
+Default: `{elementSelectors: defaultElementSelectors, shouldStringify: false, shouldReturnAllCheckboxVals: false}`
 An object to override the default settings.  
 `shouldStringify` declares if the returned value should be a string representation of an object or just the object.  
-`shouldReturnAllCheckboxGroupVals` declares if checkbox groups (i.e., multiple inputs with the same name) should return an array of only "checked" values, or an object of all inputs with a boolean value.
+`shouldReturnAllCheckboxVals` declares if checkbox groups (i.e., multiple inputs with the same name) should return an array of only "checked" values, or an object of all inputs with a boolean value.
 
 ### getInputElements(formEl, selectorSettings)
 The getInputElements method returns an array of input elements as found by the default selectors.

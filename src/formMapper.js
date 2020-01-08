@@ -6,14 +6,14 @@ const defaultElementSelectors = 'input, select, textarea';
 const defaults = {
     elementSelectors: defaultElementSelectors,
     shouldStringify: false,
-    shouldReturnAllCheckboxGroupVals: false
+    shouldReturnAllCheckboxVals: false
 };
 
 export function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
     return [...formEl.querySelectorAll(selectorSettings)];
 }
 
-function mapValues(elementList, shouldReturnAllCheckboxGroupVals) {
+function mapValues(elementList, shouldReturnAllCheckboxVals) {
     if (!Array.isArray(elementList)) {
         return {};
     }
@@ -24,7 +24,7 @@ function mapValues(elementList, shouldReturnAllCheckboxGroupVals) {
         }
 
         if (el.matches(checkboxSelector)) {
-            if (shouldReturnAllCheckboxGroupVals) {
+            if (shouldReturnAllCheckboxVals) {
                 const currentVal = returnVal[el.name] || {};
                 returnVal[el.name] = {
                     ...currentVal,
@@ -61,17 +61,17 @@ function mapValues(elementList, shouldReturnAllCheckboxGroupVals) {
  */
 export function getValues(input, opts = {}) {
     const settings = { ...defaults, ...opts };
-    const { shouldReturnAllCheckboxGroupVals } = settings;
+    const { shouldReturnAllCheckboxVals } = settings;
     let retVal = {};
 
     if (input) {
         if (input.tagName) {
             const elementList = input.matches(defaultElementSelectors) ? [input] : getInputElements(input, settings.elementSelectors);
             if (elementList.length) {
-                retVal = mapValues(elementList, shouldReturnAllCheckboxGroupVals);
+                retVal = mapValues(elementList, shouldReturnAllCheckboxVals);
             }
         } else if (input.length) {
-            retVal = mapValues(input, shouldReturnAllCheckboxGroupVals);
+            retVal = mapValues(input, shouldReturnAllCheckboxVals);
         }
     }
 
