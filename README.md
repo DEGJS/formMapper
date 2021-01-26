@@ -1,5 +1,5 @@
 # formMapper
-[![Build Status](https://travis-ci.org/DEGJS/formMapper.svg?branch=master)](https://travis-ci.org/DEGJS/formMapper)
+![Run Tests](https://github.com/DEGJS/formMapper/workflows/Run%20Tests/badge.svg)
 
 A utility to take in an element or array of elements and return an object consisting of their values
 
