@@ -10,7 +10,7 @@ const defaults = {
 };
 
 export function getInputElements(formEl, selectorSettings = defaultElementSelectors) {
-    return [...formEl.querySelectorAll(selectorSettings)];
+    return [...formEl.querySelectorAll(selectorSettings || defaultElementSelectors)];
 }
 
 function mapValues(elementList, shouldReturnAllCheckboxVals) {

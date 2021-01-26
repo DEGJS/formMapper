@@ -17,7 +17,7 @@
         "url": "https://github.com/DEGJS/formMapper.git"
     },
     "files": [
-        "src"
+        "src/formMapper.js"
     ],
     "main": "src/formMapper.js",
     "bugs": "https://github.com/DEGJS/formMapper/issues",
